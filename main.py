@@ -13,7 +13,7 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[-2].id)
 
 def speak(text):
-    engine.say("Olá mestre, eu sou Dinix")
+    engine.say(text)
     engine.runAndWait()
 
 model = Model('model')
@@ -24,7 +24,7 @@ stream = P.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, fram
 stream.start_stream()
 
 while True:
-    data = stream.read(2000)
+    data = stream.read(8192)
     if len(data) == 0:
         break
     if rec.AcceptWaveform(data):
